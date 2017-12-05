@@ -149,6 +149,7 @@ var mjpeg_mode = 0;
 var preview_delay = 0;
 
 function reload_img () {
+  if (Visibility.state() == "hidden") return;
   if(!halted) mjpeg_img.src = "cam_pic.php?time=" + new Date().getTime() + "&pDelay=" + preview_delay;
   else setTimeout("reload_img()", 500);
 }
@@ -426,6 +427,9 @@ function update_preview_delay() {
 // Init
 //
 function init(mjpeg, video_fps, divider) {
+  Visibility.change(function (e, state) {
+    if (state == "visible") reload_img();
+  });
 
   mjpeg_img = document.getElementById("mjpeg_dest");
   preview_delay = Math.floor(divider / Math.max(video_fps,1) * 1000000);
