@@ -499,6 +499,15 @@
                            </td>
                         </tr>
                         <tr>
+                           <td>Mininimise frag (0/1) Default 0:<br>Init Quantisation Default 25:<br>Encoding qp Default 31:</td>
+                           <td>
+                              MF: <?php makeInput('minimise_frag', 4); ?>
+                              IQ: <?php makeInput('initial_quant', 4); ?>
+                              QP: <?php makeInput('encode_qp', 4); ?>
+                              <input type="button" value="OK" onclick="set_encoding();">
+                           </td>
+                        </tr>
+                        <tr>
                            <td>MP4 Boxing mode :</td>
                            <td><select onchange="send_cmd('bo ' + this.value)"><?php makeOptions($options_bo, 'MP4Box'); ?></select></td>
                         </tr>
@@ -562,6 +571,12 @@
                            </td>
                         </tr>
                         <tr>
+                           <td>Delay Frames to detect:</td>
+                           <td>
+                              <?php makeInput('motion_initframes', 5); ?><input type="button" value="OK" onclick="send_cmd('ms ' + document.getElementById('motion_initframes').value)">
+                           </td>
+                        </tr>
+                        <tr>
                            <td>Change Frames to start:</td>
                            <td>
                               <?php makeInput('motion_startframes', 5); ?><input type="button" value="OK" onclick="send_cmd('mb ' + document.getElementById('motion_startframes').value)">
@@ -601,6 +616,7 @@
                         </select>
                         &nbsp;<button type="submit" name="OK" value="OK" >OK</button>
                      </form>
+					 Set Date/Time <input type='text' size=20 id='timestr' value='13 FEB 2018 12:00:00'><input type="button" value="OK" onclick="sys_settime();"<BR>
 					 <table class="settingsTable">
 						<?php macroUpdates(); ?>
 					 </table>
